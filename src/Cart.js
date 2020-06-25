@@ -1,16 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import CartItem from "./CartItem";
+import "./Cart.css";
 
-function Cart({ initialItems }) {
+function Cart({ items }) {
+  const [newitems, setNewItems] = useState(items);
+
+  const updateQty = (id, newQty) => {
+    const newItems = newitems.map((item) => {
+      if (item.id === id) {
+        return { ...item, qty: newQty };
+      }
+      return item;
+    });
+    setNewItems(newItems);
+  };
+
+  const grandTotal = newitems
+    .reduce((total, item) => total + item.qty * item.price, 0)
+    .toFixed(2);
+
   return (
-    <div>
-      <h1>sa</h1>
-      <ul>
-        {initialItems.map((item) => (
-          <li>
-            Name:{item.name},Price: {item.price}
-          </li>
+    <div className="Cart">
+      <h1 className="Cart-title">
+        Shopping Card (to understand easy react fundamentals)
+      </h1>
+      <div className="Cart-items">
+        {newitems.map((item) => (
+          <CartItem key={item.id} updateQty={updateQty} {...item} />
         ))}
-      </ul>
+      </div>
+      <h2 className="Cart-total">Grand Total: ${grandTotal}</h2>
     </div>
   );
 }

@@ -7,19 +7,19 @@ const items = [
     id: 1,
     name: "Kebab",
     price: 4.5,
-    qty: 25,
+    qty: 2,
   },
   {
     id: 2,
     name: "Ayran",
     price: 1,
-    qty: 12,
+    qty: 3,
   },
   {
     id: 3,
     name: "Taco",
     price: 4,
-    qty: 10,
+    qty: 1,
   },
 ];
 
